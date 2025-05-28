@@ -1,0 +1,20 @@
+filters:
+  price_to_sales:
+    max: 3.7
+    excellent: 1.6
+  liquidity:
+    min: 1.0  # in million SAR
+  market_cap:
+    min: 500.0  # in million SAR
+    
+excluded_sectors:
+  - gambling
+  - night_clubs
+  - alcohol
+  - tobacco
+  
+report_settings:
+  output_formats:
+    - excel
+    - html
+  top_per_sector: 5
