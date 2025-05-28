@@ -1,0 +1,4 @@
+symbol,name,price,change_percent,volume,exchange
+TSLA,Tesla Inc,850.50,8.25,25000000,NASDAQ
+AMD,Advanced Micro Devices Inc,110.75,6.80,18000000,NASDAQ
+NVDA,NVIDIA Corporation,300.25,5.90,22000000,NASDAQ

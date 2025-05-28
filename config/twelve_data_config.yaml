@@ -1,0 +1,10 @@
+twelve_data:
+  api_key: "your_api_key_here"  # Replace with actual API key
+  base_url: "https://api.twelvedata.com"
+  timeout: 30
+  rate_limit: 8  # requests per minute (free tier limit)
+  
+screening:
+  min_price: 1.0  # Minimum stock price in USD
+  min_volume: 100000  # Minimum daily volume
+  roe_threshold: 0.15  # Minimum Return on Equity (15%)

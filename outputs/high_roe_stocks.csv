@@ -1,0 +1,4 @@
+symbol,name,price,roe,volume,sector,p/s_ratio
+AAPL,Apple Inc,175.25,0.45,35000000,Technology,7.8
+MSFT,Microsoft Corporation,310.50,0.38,28000000,Technology,12.5
+GOOGL,Alphabet Inc,2750.75,0.32,1500000,Technology,8.2

@@ -1,14 +1,13 @@
 #!/usr/bin/env python3
 """
-Main Stock Filtering Application
+Main Stock Filtering Application with Twelve Data Integration
 """
-
 import logging
 from pathlib import Path
 from typing import Dict
 import pandas as pd
-from .data_processing import load_config, load_stock_data, preprocess_data
-from .report_generator import generate_reports
+from api_integration.screener import StockScreener
+from report_generator import generate_reports
 
 # Configure logging
 logging.basicConfig(
@@ -20,25 +19,23 @@ logger = logging.getLogger(__name__)
 def main():
     """Main execution function"""
     try:
-        logger.info("Starting stock filtering process")
+        logger.info("Starting US stock screening process")
         
-        # Load configuration
-        config = load_config()
+        # Initialize screener
+        screener = StockScreener()
         
-        # Load and process data
-        raw_data_path = 'data/raw_stocks.csv'
-        stocks_df = load_stock_data(raw_data_path)
-        processed_df = preprocess_data(stocks_df, config)
+        # Run screenings
+        gainers_path, roe_path = screener.save_screened_data()
         
-        # Filter stocks
-        filtered_df = processed_df[processed_df['rating'].isin(['excellent', 'good'])]
-        filtered_df = filtered_df.sort_values(
-            by=['rating', 'p/s_ratio', 'liquidity'],
-            ascending=[True, True, False]
-        )
+        # Load screened data
+        gainers = pd.read_csv(gainers_path)
+        high_roe = pd.read_csv(roe_path)
         
         # Generate reports
-        generate_reports(filtered_df, config)
+        generate_reports({
+            'top_gainers': gainers,
+            'high_roe_stocks': high_roe
+        })
         
         logger.info("Process completed successfully")
     except Exception as e:
